@@ -75,7 +75,9 @@ void LImprime(TipoLista Lista)
     int Aux;
 
     for (Aux = Lista.Primeiro - 1; Aux <= (Lista.Ultimo - 2); Aux++)
-        printf("%d\n", Lista.Item[Aux].Chave);
+        printf("nº do Item: %d", Lista.Item[Aux].Chave);
+        printf("\nNome: %s\n", Lista.Item[Aux].nome);
+
 } /* Imprime */
 
 TipoLista copiaLista(TipoLista Lista)
@@ -91,6 +93,7 @@ TipoLista copiaLista(TipoLista Lista)
     for (i = Lista.Primeiro - 1; i <= (Lista.Ultimo - 2); i++)
     {
         novoItem.Chave = Lista.Item[i].Chave;
+        strcpy(novoItem.nome, Lista.Item[i].nome);
         LInsere(novoItem, &novaLista);
     }
 
@@ -125,6 +128,7 @@ TipoLista copiaSemRepeticao(TipoLista Lista)
         if (b == 0)
         {
             novoItem.Chave = Lista.Item[i].Chave;
+            strcpy(novoItem.nome,  Lista.Item[i].nome);
             LInsere(novoItem, &novaLista);
         }
     }
@@ -145,6 +149,8 @@ TipoLista copiaListaInvertida(TipoLista Lista)
     for (i = (Lista.Ultimo - 2); i >= Lista.Primeiro - 1; i--)
     {
         novoItem.Chave = Lista.Item[i].Chave;
+        strcpy(novoItem.nome, Lista.Item[i].nome);
+        
         LInsere(novoItem, &novaLista);
     }
 
@@ -163,6 +169,7 @@ void inverteLista(TipoLista *Lista)
     for (i = (listaCopia.Ultimo - 2); i >= listaCopia.Primeiro - 1; i--)
     {
         novoItem.Chave = listaCopia.Item[i].Chave;
+        strcpy(novoItem.nome, listaCopia.Item[i].nome);
         Lista->Item[j] = novoItem;
         j++;
     }
@@ -184,8 +191,10 @@ TipoLista intercalarLista(TipoLista Lista1, TipoLista Lista2)
     {
         
         novoItem.Chave = Lista1.Item[i].Chave;
+        strcpy(novoItem.nome, Lista1.Item[i].nome);
         LInsere(novoItem, &lista3);
         novoItem.Chave = Lista2.Item[i].Chave;
+        strcpy(novoItem.nome, Lista2.Item[i].nome);
         LInsere(novoItem, &lista3);
     }
     return lista3;

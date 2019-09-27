@@ -8,6 +8,7 @@ int main(int argc, char *argv[])
   TipoLista lista;
   TipoItem item;
   int vetor[MaxTam];
+  NomeItem nomes[MaxTam];
   int i, j, n, ver_vazia, op;
 
   do
@@ -36,16 +37,17 @@ int main(int argc, char *argv[])
       /*Lendo o vetor[i] */
       for (i = 0; i < n; i++)
       {
-        printf("\nEntre com o elemento da lista de posicao %d : ", i);
+        printf("\nEntre com o nº do item: ");
         scanf("%d", &vetor[i]);
+        printf("\nEntre com o nome do item: ");
+        scanf("%s", nomes[i]);
       }
 
-      printf("\nOs elementos inseridos na lista sao : ");
       for (i = 0; i < n; i++)
       {
         item.Chave = vetor[i];
+        strcpy(item.nome, nomes[i]);
         LInsere(item, &lista);
-        printf("  %d ", item.Chave);
       }
 
       printf("\nLista criada com sucesso!");
@@ -71,7 +73,7 @@ int main(int argc, char *argv[])
       if (j <= lista.Ultimo)
         printf("\nRetirou o elemento %d que esta na posicao: %d da lista.\n", item.Chave, j);
       break;
-    
+
     case 4:
       //Verificar se a lista está vazia
       printf("\nVerificando se a lista esta vazia.\n");
@@ -81,12 +83,12 @@ int main(int argc, char *argv[])
       else
         printf("\nA lista nao esta vazia.\n");
       break;
-    
+
     case 5:
       //Verificar se a lista está ordenada
       verifica_ordem(lista);
       break;
-    
+
     case 6:
       //Copiar Lista
       printf("\nCopiando a lista L1 para a lista L2.\n");
@@ -94,14 +96,14 @@ int main(int argc, char *argv[])
       lista2 = copiaLista(lista);
       LImprime(lista2);
       break;
-    
+
     case 7:
       //Copiar Lista sem repetições
       printf("\nCopiando a lista L1 para a lista L2 sem elementos repetidos.\n");
       lista2 = copiaSemRepeticao(lista);
       LImprime(lista2);
       break;
-    
+
     case 8:
       //Copiar Lista invertida
       printf("\nCopiando a lista L1 invertida para a lista L2\n");
@@ -112,7 +114,7 @@ int main(int argc, char *argv[])
       LImprime(lista);
       inverteLista(&lista);
       break;
-    
+
     case 9:
       //Intercalar lista
       printf("\nIntercalando lista 1 e lista 2\n");
@@ -121,7 +123,7 @@ int main(int argc, char *argv[])
       LImprime(lista3);
       return (0);
       break;
-    
+
     default:
       printf("\nOpção Inválida");
       break;
